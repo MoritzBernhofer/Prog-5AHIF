@@ -1,0 +1,151 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:pocket_calculator.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="800"
+             x:Class="pocket_calculator.Views.CalculatorView"
+             x:DataType="vm:CalculatorViewModel">
+
+    <Design.DataContext>
+        <vm:CalculatorViewModel/>
+    </Design.DataContext>
+
+    <UserControl.Styles>
+        <Style Selector="Button">
+            <Setter Property="Background" Value="LightGray" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontSize" Value="30" />
+            <Setter Property="Height" Value="80" />
+            <Setter Property="Width" Value="80" />
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+
+
+        <Style Selector="Button.operator">
+            <Setter Property="Background" Value="Orange" />
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+    </UserControl.Styles>
+
+    <Border Background="Gray" Padding="50, 40, 50,20">
+        <Grid RowDefinitions="Auto, *, *, *, *">
+            <Border Grid.Row="0"
+                    Background="Black"
+                    Margin="0,0,0,20"
+                    Padding="15">
+                <Grid ColumnDefinitions="*, Auto">
+                    <TextBlock Grid.Column="0"
+                               FontSize="40"
+                               Foreground="Green"
+                               HorizontalAlignment="Left"
+                               VerticalAlignment="Center"
+                               Text="{Binding Equation}"/>
+                    <StackPanel Grid.Column="1"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center">
+                        <TextBlock Text="="
+                                   FontSize="40"
+                                   Foreground="Green"
+                                   Margin="10,0,5,0" />
+                        <TextBlock Text="2"
+                                   FontSize="40"
+                                   Foreground="Green" />
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+
+            <StackPanel Grid.Row="1"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                <Button Command="{Binding NonActionButtonClickedCommand}"
+                        CommandParameter="{Binding $self.Content}">
+                    7
+                </Button>
+                <Button Command="{Binding NonActionButtonClickedCommand}"
+                        CommandParameter="{Binding $self.Content}">
+                    8
+                </Button>
+                <Button Command="{Binding NonActionButtonClickedCommand}"
+                        CommandParameter="{Binding $self.Content}">
+                    9
+                </Button>
+                <Button Classes="operator"
+                        Command="{Binding NonActionButtonClickedCommand}"
+                        CommandParameter="{Binding $self.Content}">
+                    /
+                </Button>
+            </StackPanel>
+
+
+            <StackPanel Grid.Row="2"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                <Button Command="{Binding NonActionButtonClickedCommand}"
+                        CommandParameter="{Binding $self.Content}">
+                    4
+                </Button>
+                <Button Command="{Binding NonActionButtonClickedCommand}"
+                        CommandParameter="{Binding $self.Content}">
+                    5
+                </Button>
+                <Button Command="{Binding NonActionButtonClickedCommand}"
+                        CommandParameter="{Binding $self.Content}">
+                    6
+                </Button>
+                <Button Classes="operator"
+                        Command="{Binding NonActionButtonClickedCommand}"
+                        CommandParameter="{Binding $self.Content}">
+                    *
+                </Button>
+            </StackPanel>
+
+
+            <StackPanel Grid.Row="3"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                <Button Command="{Binding NonActionButtonClickedCommand}"
+                        CommandParameter="{Binding $self.Content}">
+                    1
+                </Button>
+                <Button Command="{Binding NonActionButtonClickedCommand}"
+                        CommandParameter="{Binding $self.Content}">
+                    2
+                </Button>
+                <Button Command="{Binding NonActionButtonClickedCommand}"
+                        CommandParameter="{Binding $self.Content}">
+                    3
+                </Button>
+                <Button Classes="operator"
+                        Command="{Binding NonActionButtonClickedCommand}"
+                        CommandParameter="{Binding $self.Content}">
+                    -
+                </Button>
+            </StackPanel>
+
+            <StackPanel Grid.Row="4"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                <Button Command="{Binding NonActionButtonClickedCommand}"
+                        CommandParameter="{Binding $self.Content}">
+                    0
+                </Button>
+                <Button Command="{Binding NonActionButtonClickedCommand}"
+                        CommandParameter="{Binding $self.Content}">
+                    C
+                </Button>
+                <Button Classes="operator"
+                        Command="{Binding NonActionButtonClickedCommand}"
+                        CommandParameter="{Binding $self.Content}">
+                    +
+                </Button>
+                <Button Classes="operator" Command="{Binding CalculateCommand}" >=</Button>
+            </StackPanel>
+
+        </Grid>
+    </Border>
+</UserControl>
